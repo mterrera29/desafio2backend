@@ -34,17 +34,17 @@ class ProductManager{
   }
 
   getProductById = async (id) =>{
-  const usuarios = await fs.promises.readFile(this.ruta, "utf-8")
-    const usuariosString = JSON.parse(usuarios)
-    const filterId = usuariosString.filter((prod)=> (prod.id == id))
+  const productos = await fs.promises.readFile(this.ruta, "utf-8")
+    const productosString = JSON.parse(productos)
+    const filterId = productosString.filter((prod)=> (prod.id == id))
     return filterId
   }
 
   updateProduct = async (id, campo, value) =>{
-    const usuarios = await fs.promises.readFile(this.ruta, "utf-8")
-    const usuariosString = JSON.parse(usuarios)
-    const filterId = usuariosString.filter((prod)=> (prod.id == id))
-    const filterOtherId = usuariosString.filter((prod)=> (prod.id !== id))
+    const productos = await fs.promises.readFile(this.ruta, "utf-8")
+    const productosString = JSON.parse(productos)
+    const filterId = productosString.filter((prod)=> (prod.id == id))
+    const filterOtherId = productosString.filter((prod)=> (prod.id !== id))
     
     filterId.map((elemento)=> (elemento[campo]= value))
 
@@ -58,12 +58,12 @@ class ProductManager{
   }
 
   deleteProduct = async (id) =>{
-    const usuarios = await fs.promises.readFile(this.ruta, "utf-8")
-    const usuariosString = JSON.parse(usuarios)
-    const filterId = usuariosString.filter((prod)=> (prod.id === id))
+    const productos = await fs.promises.readFile(this.ruta, "utf-8")
+    const productosString = JSON.parse(productos)
+    const filterId = productosString.filter((prod)=> (prod.id === id))
 
     if (filterId.length > 0){
-    const filterIdDelete = usuariosString.filter((prod)=> (prod.id !== id))
+    const filterIdDelete = productosString.filter((prod)=> (prod.id !== id))
       const cadenaArchivo = JSON.stringify(filterIdDelete)
       await fs.promises.writeFile(this.ruta, cadenaArchivo)
       console.log("Producto borrado") 
@@ -81,10 +81,10 @@ manager.addProduct("producto 2","Este es un producto prueba",200,"Sin imagen","a
 manager.addProduct("producto 3","Este es un producto prueba",200,"Sin imagen","abc123",25)
 manager.getProducts().then((productos)=> {console.log(productos)})  */
 
-/* manager.getProductById(3).then((productos)=> {console.log(productos)})  */
+/* manager.getProductById(3).then((productos)=> {console.log(productos)})   */
 
 /* manager.updateProduct(2, "price", 500) 
-manager.getProducts().then((productos)=> {console.log(productos)})  */
+manager.getProducts().then((productos)=> {console.log(productos)}) */ 
 
 /* manager.deleteProduct(1)
 manager.getProducts().then((productos)=> {console.log(productos)}) */
